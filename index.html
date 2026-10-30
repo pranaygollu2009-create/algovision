@@ -1,1 +1,169 @@
-PLACEHOLDER_HTML_2
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlgoVision — See How Algorithms Work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">◈</span>
+      <div>
+        <h1>AlgoVision</h1>
+        <p>Watch algorithms think, one step at a time</p>
+      </div>
+    </div>
+    <nav class="tabs">
+      <button class="tab active" data-view="sorting" data-nav>Sorting</button>
+      <button class="tab" data-view="pathfinding" data-nav>Pathfinding</button>
+      <button class="tab" data-view="compare">Compare</button>
+    </nav>
+  </header>
+
+  <!-- ============ SORTING ============ -->
+  <main>
+    <section id="view-sorting" class="view active">
+      <div class="toolbar card">
+        <div class="field">
+          <label>Algorithm</label>
+          <select id="sort-algo" data-no-select>
+            <option value="bubble">Bubble Sort</option>
+            <option value="merge">Merge Sort</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Array size <span id="size-label" class="mono">60</span></label>
+          <input type="range" id="sort-size" min="10" max="160" value="60" data-no-select />
+        </div>
+        <div class="field">
+          <label>Speed</label>
+          <div class="speed-readout"><input type="range" id="sort-speed" min="1" max="100" value="55" data-no-select /><span id="speed-label" class="mono">55</span></div>
+        </div>
+        <div class="field">
+          <label>Input shape</label>
+          <select id="sort-shape" data-no-select>
+            <option value="random">Random</option>
+            <option value="nearly">Nearly sorted</option>
+            <option value="reversed">Reversed</option>
+            <option value="few">Few unique</option>
+          </select>
+        </div>
+        <div class="actions">
+          <button id="sort-run" class="btn primary">Run</button>
+          <button id="sort-pause" class="btn" disabled>Pause</button>
+          <button id="sort-stop" class="btn">Stop</button>
+          <button id="sort-shuffle" class="btn ghost">New input</button>
+        </div>
+      </div>
+
+      <div id="sort-bars" class="bars card"></div>
+
+      <div class="stats-row">
+        <div class="stat card"><span class="stat-num" id="st-comp">0</span><span class="stat-lab">Comparisons</span></div>
+        <div class="stat card"><span class="stat-num" id="st-writes">0</span><span class="stat-lab">Array writes</span></div>
+        <div class="stat card"><span class="stat-num" id="st-work">—</span><span class="stat-lab">Time complexity</span></div>
+        <div class="stat card statue"><span class="stat-msg" id="st-msg">Ready — press Run to sort</span></div>
+      </div>
+
+      <div class="legend card">
+        <span><i class="chip c-default"></i>Unsorted</span>
+        <span><i class="chip c-compare"></i>Comparing</span>
+        <span><i class="chip c-swap"></i>Writing / swapping</span>
+        <span><i class="chip c-sorted"></i>Confirmed sorted</span>
+      </div>
+
+      <details class="explainer card">
+        <summary>How does this algorithm work?</summary>
+        <div id="sort-explain"></div>
+      </details>
+    </section>
+
+    <!-- ============ PATHFINDING ============ -->
+    <section id="view-pathfinding" class="view">
+      <div class="toolbar card">
+        <div class="field">
+          <label>Tool</label>
+          <div class="seg" id="paint-tools" data-no-select>
+            <button class="seg-btn active" data-tool="wall">Draw walls</button>
+            <button class="seg-btn" data-tool="erase">Erase</button>
+            <button class="seg-btn" data-tool="start">Move start</button>
+            <button class="seg-btn" data-tool="target">Move target</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Speed</label>
+          <div class="speed-readout"><input type="range" id="path-speed" min="1" max="100" value="70" data-no-select /><span id="path-speed-label" class="mono">70</span></div>
+        </div>
+        <div class="actions">
+          <button id="path-run" class="btn primary">Run BFS</button>
+          <button id="path-stop" class="btn">Stop</button>
+          <button id="path-clear" class="btn ghost">Clear walls</button>
+          <button id="path-maze" class="btn ghost">Random maze</button>
+        </div>
+      </div>
+
+      <div id="grid" class="grid card"></div>
+
+      <div class="stats-row">
+        <div class="stat card"><span class="stat-num" id="pt-visited">0</span><span class="stat-lab">Cells explored</span></div>
+        <div class="stat card"><span class="stat-num" id="pt-path">—</span><span class="stat-lab">Path length</span></div>
+        <div class="stat card"><span class="stat-num" id="pt-time">—</span><span class="stat-lab">Search time (ms)</span></div>
+        <div class="stat card statue"><span class="stat-msg" id="pt-msg">Drag on the grid, then press Run BFS</span></div>
+      </div>
+
+      <div class="legend card">
+        <span><i class="chip g-start"></i>Start</span>
+        <span><i class="chip g-target"></i>Target</span>
+        <span><i class="chip g-wall"></i>Wall</span>
+        <span><i class="chip g-frontier"></i>Frontier</span>
+        <span><i class="chip g-visited"></i>Explored</span>
+        <span><i class="chip g-path"></i>Shortest path</span>
+      </div>
+
+      <details class="explainer card">
+        <summary>What is breadth-first search doing?</summary>
+        <div>
+          <p><strong>Breadth-first search (BFS)</strong> explores the grid in “rings” around the start:
+          first every cell 1 step away, then every cell 2 steps away, and so on. Because it always
+          expands in this order, the first time it reaches the target it must have found a
+          <em>fewest-steps</em> route — that is why BFS gives the shortest path on an unweighted grid.</p>
+          <p>Watch the frontier: it spreads like water from a tap. Cells are coloured as they join the
+          queue (frontier) and darken once they are expanded. When the target is reached, the algorithm
+          walks the recorded parent links backwards to reveal the path.</p>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ COMPARE ============ -->
+    <section id="view-compare" class="view">
+      <div class="toolbar card">
+        <div class="field">
+          <label>Array size</label>
+          <input type="range" id="cmp-size" min="20" max="400" value="120" data-no-select />
+        </div>
+        <div class="field">
+          <label>Trials per algorithm</label>
+          <input type="range" id="cmp-trials" min="3" max="30" value="10" data-no-select />
+        </div>
+        <div class="actions">
+          <button id="cmp-run" class="btn primary">Run comparison</button>
+        </div>
+      </div>
+      <div id="cmp-results" class="card cmp-results">
+        <p class="muted" id="cmp-hint">The comparison runs both sorting algorithms on the <em>same</em> random
+        arrays, counts every elementary step, and measures real elapsed time. Results are averaged
+        across trials. Try growing the size 2× and watch how each column scales.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>AlgoVision — built for CS students · no frameworks, just algorithms</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
