@@ -37,7 +37,14 @@ body {
   backdrop-filter: blur(8px);
   position: sticky; top: 0; z-index: 10;
 }
-.brand { display: flex; align-items: center; gap: 12px; }
+.brand {
+  display: flex; align-items: center; gap: 12px;
+  background: transparent; border: none; padding: 6px 10px; margin-left: -10px;
+  border-radius: 12px; color: inherit; font: inherit; text-align: left; cursor: pointer;
+  transition: background .15s ease;
+}
+.brand:hover { background: rgba(79, 140, 255, .08); }
+.brand:focus-visible { outline: 2px solid var(--accent); }
 .logo {
   font-size: 26px; color: var(--accent-2);
   background: #102a3d; border: 1px solid #1c4a63;
@@ -67,6 +74,26 @@ main { flex: 1; width: min(1180px, 94vw); margin: 22px auto; display: flex; flex
   border-radius: var(--radius);
   padding: 14px 18px;
 }
+
+/* ---------- home ---------- */
+.hero {
+  display: flex; flex-direction: column; gap: 12px;
+  background:
+    radial-gradient(900px 300px at 12% -40%, rgba(79, 140, 255, .18) 0%, transparent 60%),
+    var(--panel);
+  padding: 26px 28px;
+}
+.hero h2 { font-size: 26px; letter-spacing: .2px; }
+.hero p { color: #b9c4de; line-height: 1.7; max-width: 76ch; font-size: 15.5px; }
+.hero p em { color: var(--accent-2); font-style: normal; font-weight: 600; }
+.hero-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+.home-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.home-col h3 { font-size: 15px; color: var(--accent-2); margin-bottom: 8px; letter-spacing: .3px; }
+.home-col p { font-size: 14px; color: #b9c4de; line-height: 1.65; }
+.home-col .mono { color: var(--muted); font-size: 13px; padding: 1px 4px; background: var(--panel-2); border-radius: 4px; }
+.home-list { display: flex; flex-direction: column; gap: 8px; margin: 2px 0 0 18px; }
+.home-list li { font-size: 14px; color: #b9c4de; line-height: 1.6; }
+.home-list em { color: var(--text); }
 
 footer { text-align: center; color: var(--muted); font-size: 12px; padding: 18px 0 26px; }
 
@@ -175,4 +202,5 @@ input[type="range"] { accent-color: var(--accent); width: 190px; cursor: pointer
   .stats-row { grid-template-columns: 1fr 1fr; }
   .stat.statue { grid-column: span 2; }
   .bars { height: 240px; }
+  .home-cols { grid-template-columns: 1fr; }
 }
