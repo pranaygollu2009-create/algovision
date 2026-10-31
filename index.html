@@ -7,27 +7,79 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2" />
 </head>
 <body>
   <header class="topbar">
-    <div class="brand">
+    <button class="brand" data-nav data-view="home" title="Back to home" aria-label="AlgoVision home">
       <span class="logo">◈</span>
       <div>
         <h1>AlgoVision</h1>
         <p>Watch algorithms think, one step at a time</p>
       </div>
-    </div>
+    </button>
     <nav class="tabs">
-      <button class="tab active" data-view="sorting" data-nav>Sorting</button>
+      <button class="tab active" data-view="home" data-nav>Home</button>
+      <button class="tab" data-view="sorting" data-nav>Sorting</button>
       <button class="tab" data-view="pathfinding" data-nav>Pathfinding</button>
-      <button class="tab" data-view="compare">Compare</button>
+      <button class="tab" data-view="compare" data-nav>Compare</button>
     </nav>
   </header>
 
-  <!-- ============ SORTING ============ -->
   <main>
-    <section id="view-sorting" class="view active">
+    <!-- ============ HOME ============ -->
+    <section id="view-home" class="view active">
+      <div class="hero card">
+        <h2>What is AlgoVision?</h2>
+        <p>AlgoVision is an interactive playground for <em>seeing</em> algorithms think. Instead of
+        reading code on a page, you watch every comparison, swap and grid expansion happen bar by
+        bar and cell by cell — with live counters, plain-English explainers, and experiments you
+        can repeat as many times as you like. No install, no sign-up: everything runs right here
+        in your browser.</p>
+        <div class="hero-actions">
+          <button class="btn primary" data-nav data-view="sorting">▶ Start with sorting</button>
+          <button class="btn" data-nav data-view="pathfinding">Draw a maze & run BFS</button>
+          <button class="btn ghost" data-nav data-view="compare">Race both sorts</button>
+        </div>
+      </div>
+
+      <div class="home-cols">
+        <div class="card home-col">
+          <h3>1 · Sorting</h3>
+          <p>Choose <strong>Bubble</strong> or <strong>Merge</strong> sort, set the array size,
+          animation speed and input shape (random, nearly sorted, reversed, few unique), then press
+          <span class="mono">Run</span>. Orange marks the pair being compared, red marks a write,
+          green marks values confirmed in their final place.</p>
+        </div>
+        <div class="card home-col">
+          <h3>2 · Pathfinding</h3>
+          <p>Drag on the grid to <span class="mono">draw walls</span> (or hit
+          <span class="mono">Random maze</span>), place the start and target wherever you like,
+          then <span class="mono">Run BFS</span>. Watch the frontier flood outward like water and
+          the shortest path trace its way home.</p>
+        </div>
+        <div class="card home-col">
+          <h3>3 · Compare</h3>
+          <p>Race <span class="mono">bubble vs merge</span> on identical arrays over several
+          trials. It counts every comparison and array write and measures real time, so you can see
+          quadratic vs. O(n log n) growth with your own eyes — double the size and watch the ratio
+          climb.</p>
+        </div>
+      </div>
+
+      <div class="card home-col">
+        <h3>Experiments worth trying</h3>
+        <ul class="home-list">
+          <li>Run Bubble Sort on a <em>nearly sorted</em> input — the early-exit pass finishes almost instantly.</li>
+          <li>Run it again <em>reversed</em> — maximum comparisons, O(n²) in action.</li>
+          <li>In Pathfinding, wall off the target completely and watch BFS report there is no path.</li>
+          <li>In Compare, halve the sizes, run again, and see how each column scales.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SORTING ============ -->
+    <section id="view-sorting" class="view">
       <div class="toolbar card">
         <div class="field">
           <label>Algorithm</label>
@@ -164,6 +216,6 @@
 
   <footer>AlgoVision — built for CS students · no frameworks, just algorithms</footer>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>
