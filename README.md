@@ -1,6 +1,6 @@
 # AlgoVision — See How Algorithms Work
 
-**[🌐 Open the live app →](https://algovision-yn8c3b.freebuff.page)** — nothing to install, it runs right in the browser.
+**[🌐 Open the live app →](https://pranaygollu2009-create.github.io/algovision/)** — nothing to install, it runs right in the browser.
 
 An interactive algorithm visualizer for CS students, built with **zero frameworks and no
 build step** — just plain HTML, CSS, and vanilla JavaScript. Algorithms execute for real in
